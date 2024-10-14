@@ -31,14 +31,15 @@ export default{
                 this.isActivated = !this.isActivated
                 const account = await signInAndGetUser();
                 this.user = account;
-                console.log(this.user);
+                
+                this.$emit("userShare",this.user)
             } catch (error) {
                 console.error('Sign-in failed:', error);
             }
 
             this.isActivated = !this.isActivated;
         },
-  }
+    }
 }
 
 </script>

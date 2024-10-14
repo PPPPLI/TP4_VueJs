@@ -1,8 +1,8 @@
 <template>
 
-        <header-component></header-component>
+        <header-component @userShare="getUserInfo"></header-component>
     
-        <div id="title">Here comes the content of the HomePage</div>
+        <div id="title">{{ user }}</div>
 
         <div><HomePageComponent color="primary" :disabled=isPending @click.stop.prevent=handlerClick>
             Disable and animated for {{counter+1}} seconds if clicked
@@ -42,7 +42,8 @@ export default {
     return {
 
         isPending:false,
-        counter : 1
+        counter : 1,
+        user:"Please login"
     }
   },
 
@@ -62,6 +63,11 @@ export default {
         })
 
         asyncPromise.finally(()=> this.isPending = false)
+    },
+
+    getUserInfo(data){
+
+        this.user = data.name;
     }
   }
 }
