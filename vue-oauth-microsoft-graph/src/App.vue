@@ -1,8 +1,8 @@
 <template>
 
-        <header-component @userShare="getUserInfo"></header-component>
+        <header-component></header-component>
     
-        <div id="title">{{ user }}</div>
+        <div id="title">{{ user}}</div>
 
         <div><HomePageComponent color="primary" :disabled=isPending @click.stop.prevent=handlerClick>
             Disable and animated for {{counter+1}} seconds if clicked
@@ -28,6 +28,7 @@
 <script>
 import headerComponent from './components/headerComponent.vue';
 import HomePageComponent from './components/HomePageComponent.vue';
+import { mapMutations, mapState } from 'vuex';
 
 
 export default {
@@ -43,8 +44,13 @@ export default {
 
         isPending:false,
         counter : 1,
-        user:"Please login"
+        //user:"Please login"
     }
+  },
+
+  computed:{
+
+    ...mapState(['user'])
   },
 
   methods:{
@@ -65,10 +71,12 @@ export default {
         asyncPromise.finally(()=> this.isPending = false)
     },
 
-    getUserInfo(data){
+    ...mapMutations(["updateUser"]),
 
-        this.user = data.name;
-    }
+    /*getUserInfo(data){
+
+        this.updateUser(data)
+    }*/
   }
 }
 </script>

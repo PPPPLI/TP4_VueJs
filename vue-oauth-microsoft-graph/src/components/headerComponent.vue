@@ -12,27 +12,30 @@
 
 <script>
 import {signInAndGetUser} from '@/lib/microsoftGraph';
+import { mapMutations} from 'vuex';
 
 export default{
 
     data(){
 
         return {
-            user:null,
+            //user:null,
             isActivated:false
         };
     },
 
     methods: {
 
+        ...mapMutations(["updateUser"]),
+
         async signIn() {
 
             try {
                 this.isActivated = !this.isActivated
                 const account = await signInAndGetUser();
-                this.user = account;
+                this.updateUser(account.name)
                 
-                this.$emit("userShare",this.user)
+                //this.$emit("userShare",this.user)
             } catch (error) {
                 console.error('Sign-in failed:', error);
             }
