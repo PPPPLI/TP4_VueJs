@@ -1,5 +1,6 @@
 import HomePageComponent from "../components/HomePageComponent.vue";
 import ConversationIndexPage from "../components/conversationIndexPage.vue";
+import conversationShowPage from "../components/conversationShowPage.vue";
 import { createRouter,createWebHistory } from "vue-router";
 import store from "../store/index.js"
 
@@ -13,12 +14,12 @@ const routes = [
 
     {
 
-        path:"/conversation",
+        path:"/conversations",
         name:"Conversation",
         component: ConversationIndexPage,
         beforeEnter: (to, from, next) =>{
 
-            const isLogged = store.getters.isLogged()
+            const isLogged = store.getters.isLogged
 
             if(!isLogged){
 
@@ -28,6 +29,12 @@ const routes = [
                 next();
             }
         }
+    },
+
+    {
+        path:"/conversations/:id",
+        name:"ConversationShow",
+        component: conversationShowPage
     }
 ]
 

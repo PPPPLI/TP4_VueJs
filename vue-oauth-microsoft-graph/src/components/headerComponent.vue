@@ -3,11 +3,11 @@
 
         <router-link to="/">Home</router-link>
         <span> | </span>
-        <router-link to="conversation" v-if="user !== null">Conversation</router-link>
+        <router-link :to="{name:'ConversationShow', params:{id:123}}" v-if="user !== null">Conversation</router-link>
         <span v-if="user !== null"> | </span>
-        <router-link to="conversation" v-if="user !== null">Sign Out</router-link>
+        <router-link to="/conversations" v-if="user !== null">Sign Out</router-link>
         <span v-if="user !== null"> | </span>
-        <router-link to="conversation">About</router-link>
+        <router-link to="/conversations">About</router-link>
 
     </div>
     <header>
