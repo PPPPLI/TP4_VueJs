@@ -2,39 +2,22 @@
 
         <header-component></header-component>
     
-        <div id="title">{{ user}}</div>
+        <div id="title">{{user}}</div>
 
-        <div><HomePageComponent color="primary" :disabled=isPending @click.stop.prevent=handlerClick>
-            Disable and animated for {{counter+1}} seconds if clicked
-        </HomePageComponent></div>
-
-        <div><HomePageComponent color="primary">
-            BaseButton with custom margin
-        </HomePageComponent></div>
+        <router-view color="primary" :isDisabled=isPending @click.stop.prevent=handlerClick :counter="counter"
         
-        <div><HomePageComponent  color="primary" disabled>
-            BaseButton disabled
-        </HomePageComponent>    </div>
+        ></router-view>
 
-        <div><HomePageComponent  color="warn">
-            BaseButton with color propos
-        </HomePageComponent></div>
-
-        <div><HomePageComponent  color="danger">
-            BaseButton with color propos
-        </HomePageComponent></div>
 </template>
 
 <script>
 import headerComponent from './components/headerComponent.vue';
-import HomePageComponent from './components/HomePageComponent.vue';
 import { mapMutations, mapState } from 'vuex';
 
 
 export default {
   name: 'App',
   components: {
-    HomePageComponent,
     headerComponent
   },
 
@@ -56,6 +39,7 @@ export default {
   methods:{
 
     handlerClick(){
+
 
         this.isPending = true
 

@@ -1,7 +1,16 @@
 <template>
-    <button :class="buttonColor">
-        <slot></slot>
-    </button>
+
+    <div id="btnDiv">
+        <button class="greenBtn" :disabled="isDisabled">
+            Disable and animated for {{ counter }} seconds if clicked
+        </button>
+        <button class="orangeBtn">
+            Danger
+        </button>
+        <button class="greenBtn" :disabled="isDisabled">
+            Disable and animated for {{ counter }} seconds if clicked
+        </button>
+    </div>  
 </template>
 
 <script>
@@ -15,6 +24,15 @@ export default {
 
     color: {
         type: String,
+        Required: true,
+    },
+    counter: {
+
+        type: Number,
+        Required: true
+    },
+    isDisabled:{
+        type: Boolean,
         Required: true
     }
   },
@@ -59,6 +77,7 @@ button{
     border-radius: 5px;
     padding: 5px;
     transition: 0.5s all;
+    min-width: 50vh;
 }
 
 button:hover{
@@ -69,6 +88,13 @@ button:hover{
 button:disabled{
 
     cursor: no-drop;
+}
+
+#btnDiv{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 </style>
