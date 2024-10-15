@@ -23,6 +23,14 @@ const userStore = createStore({
 
             commit("updateUser")
         }
+    },
+
+    getters:{
+
+        isLogged(state){
+
+            return state.user !== null
+        }
     }
 })
 

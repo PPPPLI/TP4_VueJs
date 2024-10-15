@@ -2,8 +2,6 @@
 
         <header-component></header-component>
     
-        <div id="title">{{user}}</div>
-
         <router-view color="primary" :isDisabled=isPending @click.stop.prevent=handlerClick :counter="counter"
         
         ></router-view>

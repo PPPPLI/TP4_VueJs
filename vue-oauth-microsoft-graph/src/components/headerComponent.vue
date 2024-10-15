@@ -1,9 +1,19 @@
 <template>
-    <header>
+    <div id="linkDiv">
 
+        <router-link to="/">Home</router-link>
+        <span> | </span>
+        <router-link to="conversation" v-if="user !== null">Conversation</router-link>
+        <span v-if="user !== null"> | </span>
+        <router-link to="conversation" v-if="user !== null">Sign Out</router-link>
+        <span v-if="user !== null"> | </span>
+        <router-link to="conversation">About</router-link>
+
+    </div>
+    <header>
         <button id="homeBtn"><img src="../assets/home-icon-vector.png" height="30px" alt="homeIcon"><span id="homeSpan">Home</span></button>
         <button @click="signIn" :disabled="isActivated">
-            <span>Sign in with MicroSoft</span>
+            <span>{{user === null? 'Sign in with MicroSoft': "Logged as " + user}}</span>
         </button>
         
     </header>
@@ -12,7 +22,7 @@
 
 <script>
 import {signInAndGetUser} from '@/lib/microsoftGraph';
-import { mapMutations} from 'vuex';
+import { mapMutations,mapState} from 'vuex';
 
 export default{
 
@@ -22,6 +32,11 @@ export default{
             //user:null,
             isActivated:false
         };
+    },
+
+    computed:{
+
+        ...mapState(["user"])
     },
 
     methods: {
@@ -93,5 +108,24 @@ export default{
     #homeSpan{
 
         padding-top: 3px;
+    }
+
+    a{
+
+        margin: 0 10px;
+        text-decoration: none;
+        color:  rgb(93, 199, 142);
+        font-size: large;
+        font-weight: 600;
+    }
+
+    a:visited{
+        color:  rgb(93, 199, 142);
+    }
+
+
+    #linkDiv{
+
+        margin: 20px 0;
     }
 </style>
